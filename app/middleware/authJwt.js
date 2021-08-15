@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
 const db = require("../models");
-const User = db.customer;
 
 verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
@@ -18,7 +17,7 @@ verifyToken = (req, res, next) => {
         message: "Unauthorized!"
       });
     }
-    req.userId = decoded.id;
+    req.userPhone = decoded.id;
     next();
   });
 };
