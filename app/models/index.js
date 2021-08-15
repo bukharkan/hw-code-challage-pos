@@ -20,5 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.items = require("./items.model.js")(sequelize, Sequelize);
+db.customer = require("./customers.model.js")(sequelize, Sequelize);
 
 module.exports = db;
