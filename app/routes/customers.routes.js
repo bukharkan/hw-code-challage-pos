@@ -14,6 +14,8 @@ module.exports = app => {
 
   router.get("/profile", [authJwt.verifyToken], customer.profile);
 
+  router.get("/mytransactions", [authJwt.verifyToken], customer.myTransactions);
+
   router.post("/update", [authJwt.verifyToken], customer.update);
 
   app.use('/api/customer', router);

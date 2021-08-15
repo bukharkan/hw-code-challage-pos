@@ -21,5 +21,40 @@ db.sequelize = sequelize;
 
 db.items = require("./items.model.js")(sequelize, Sequelize);
 db.customer = require("./customers.model.js")(sequelize, Sequelize);
+db.transactions = require("./transactions.model.js")(sequelize, Sequelize);
+db.transactionDetail = require("./transaction-details.model.js")(sequelize, Sequelize);
+
+db.transactions.belongsTo(db.customer, {
+  foreignKey: 'customerPhone',
+  targetKey: 'phone',
+  onDelete: 'cascade'
+});
+
+db.customer.hasMany(db.transactions, {
+  foreignKey: 'customerPhone',
+  targetKey: 'phone',
+  onDelete: 'cascade'
+});
+
+db.transactionDetail.belongsTo(db.transactions, {
+  foreignKey: 'transactionId',
+  onDelete: 'cascade'
+});
+
+db.transactions.hasMany(db.transactionDetail, {
+  foreignKey: 'transactionId',
+  onDelete: 'cascade'
+});
+
+
+db.transactionDetail.belongsTo(db.items, {
+  foreignKey: 'itemId',
+  onDelete: 'cascade'
+});
+
+db.items.hasMany(db.transactionDetail, {
+  foreignKey: 'itemId',
+  onDelete: 'cascade'
+});
 
 module.exports = db;

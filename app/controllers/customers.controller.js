@@ -1,9 +1,26 @@
 const db = require("../models");
 const CustomerModel = db.customer;
+const TransactionModel = db.transactions;
 
 
 exports.profile = (req, res) => {
   CustomerModel.findByPk(req.userPhone)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Can't get profile customer"
+      });
+    });
+};
+
+exports.myTransactions = (req, res) => {
+  TransactionModel.findAll({
+    where: {
+      customerPhone: req.userPhone
+    }
+  })
     .then(data => {
       res.send(data);
     })
