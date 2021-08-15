@@ -31,7 +31,7 @@ ERD
 Installation
 ------------
 
-1. Clone a [https://github.com/ryanoasis/vim-devicons.git](https://github.com/ryanoasis/vim-devicons.git)
+1. Clone a [https://github.com/bukharkan/hw-code-challage-pos.git](https://github.com/bukharkan/hw-code-challage-pos.git)
 2. Install the Node Modules, 
 
     ```vim
